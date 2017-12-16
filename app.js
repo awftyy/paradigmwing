@@ -3,7 +3,7 @@ const app = express()
 
 app.enable('trust proxy');
 app.use(function(req, res, next) {
-    if (req.secure || req.headers.host == 'localhost:8081'){
+    if (req.secure || req.headers.host == 'localhost:8080'){
         return next();
     }
     res.redirect("https://" + req.headers.host + req.url);
@@ -38,7 +38,7 @@ app.post('/email', function(req, res){
   res.send(JSON.stringify({ succes: 1 }));
 });
 
-var port = process.env.PORT || 8081;
+var port = process.env.PORT || 8080;
 app.listen(port, function () {
-  console.log('Example app listening on port 3000!')
+  console.log('Example app listening on port ' + port)
 })
